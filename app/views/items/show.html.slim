@@ -1,0 +1,48 @@
+p#notice = notice
+
+p
+  strong Filename:
+  = @item.filename
+p
+  strong File size:
+  = @item.file_size
+p
+  strong File created at:
+  = @item.file_created_at
+p
+  strong File updated at:
+  = @item.file_updated_at
+p
+  strong File hash:
+  = @item.file_hash
+p
+  strong Format:
+  = @item.format
+p
+  strong Title:
+  = @item.title
+p
+  strong Subtitle:
+  = @item.subtitle
+p
+  strong Number:
+  = @item.number
+p
+  strong Released at:
+  = @item.released_at
+p
+  strong Duration sec:
+  = @item.duration_sec
+p
+  strong Description:
+  = @item.description
+p
+  strong Log:
+  = @item.log
+p
+  strong Flag:
+  = @item.flag
+
+= link_to 'Edit', edit_item_path(@item)
+'|
+= link_to 'Back', items_path

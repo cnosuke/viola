@@ -1,0 +1,15 @@
+= form_for @item_tag do |f|
+  - if @item_tag.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@item_tag.errors.count, "error")} prohibited this item_tag from being saved:"
+      ul
+        - @item_tag.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :item
+    = f.text_field :item
+  .field
+    = f.label :tag
+    = f.text_field :tag
+  .actions = f.submit 'Save'

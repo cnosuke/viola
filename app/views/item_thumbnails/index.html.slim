@@ -1,0 +1,23 @@
+h1 Listing item_thumbnails
+
+table
+  tr
+    th Item
+    th Time sec
+    th Image filename
+    th
+    th
+    th
+
+  - @item_thumbnails.each do |item_thumbnail|
+    tr
+      td = item_thumbnail.item
+      td = item_thumbnail.time_sec
+      td = item_thumbnail.image_filename
+      td = link_to 'Show', item_thumbnail
+      td = link_to 'Edit', edit_item_thumbnail_path(item_thumbnail)
+      td = link_to 'Destroy', item_thumbnail, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Item thumbnail', new_item_thumbnail_path

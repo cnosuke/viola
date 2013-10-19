@@ -1,0 +1,45 @@
+h1 Listing items
+
+table
+  tr
+    th Filename
+    th File size
+    th File created at
+    th File updated at
+    th File hash
+    th Format
+    th Title
+    th Subtitle
+    th Number
+    th Released at
+    th Duration sec
+    th Description
+    th Log
+    th Flag
+    th
+    th
+    th
+
+  - @items.each do |item|
+    tr
+      td = item.filename
+      td = item.file_size
+      td = item.file_created_at
+      td = item.file_updated_at
+      td = item.file_hash
+      td = item.format
+      td = item.title
+      td = item.subtitle
+      td = item.number
+      td = item.released_at
+      td = item.duration_sec
+      td = item.description
+      td = item.log
+      td = item.flag
+      td = link_to 'Show', item
+      td = link_to 'Edit', edit_item_path(item)
+      td = link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Item', new_item_path

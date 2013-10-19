@@ -1,0 +1,27 @@
+h1 Listing storages
+
+h2 test
+
+table
+  tr
+    th Name
+    th Path
+    th Description
+    th Device
+    th
+    th
+    th
+
+  - @storages.each do |storage|
+    tr
+      td = storage.name
+      td = storage.path
+      td = storage.description
+      td = storage.device
+      td = link_to 'Show', storage
+      td = link_to 'Edit', edit_storage_path(storage)
+      td = link_to 'Destroy', storage, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Storage', new_storage_path

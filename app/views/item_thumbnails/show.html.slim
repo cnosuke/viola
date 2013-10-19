@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Item:
+  = @item_thumbnail.item
+p
+  strong Time sec:
+  = @item_thumbnail.time_sec
+p
+  strong Image filename:
+  = @item_thumbnail.image_filename
+
+= link_to 'Edit', edit_item_thumbnail_path(@item_thumbnail)
+'|
+= link_to 'Back', item_thumbnails_path

@@ -1,0 +1,18 @@
+= form_for @item_prop do |f|
+  - if @item_prop.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@item_prop.errors.count, "error")} prohibited this item_prop from being saved:"
+      ul
+        - @item_prop.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :item
+    = f.text_field :item
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :value
+    = f.text_field :value
+  .actions = f.submit 'Save'

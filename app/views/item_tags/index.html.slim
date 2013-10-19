@@ -1,0 +1,21 @@
+h1 Listing item_tags
+
+table
+  tr
+    th Item
+    th Tag
+    th
+    th
+    th
+
+  - @item_tags.each do |item_tag|
+    tr
+      td = item_tag.item
+      td = item_tag.tag
+      td = link_to 'Show', item_tag
+      td = link_to 'Edit', edit_item_tag_path(item_tag)
+      td = link_to 'Destroy', item_tag, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Item tag', new_item_tag_path

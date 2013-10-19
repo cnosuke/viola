@@ -1,0 +1,1 @@
+json.extract! @item, :filename, :file_size, :file_created_at, :file_updated_at, :file_hash, :format, :title, :subtitle, :number, :released_at, :duration_sec, :description, :log, :flag, :created_at, :updated_at

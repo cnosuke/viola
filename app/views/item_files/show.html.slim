@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Item:
+  = @item_file.item
+p
+  strong Storage:
+  = @item_file.storage
+p
+  strong Directory:
+  = @item_file.directory
+p
+  strong Flag:
+  = @item_file.flag
+
+= link_to 'Edit', edit_item_file_path(@item_file)
+'|
+= link_to 'Back', item_files_path

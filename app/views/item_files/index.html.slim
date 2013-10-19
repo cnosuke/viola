@@ -1,0 +1,25 @@
+h1 Listing item_files
+
+table
+  tr
+    th Item
+    th Storage
+    th Directory
+    th Flag
+    th
+    th
+    th
+
+  - @item_files.each do |item_file|
+    tr
+      td = item_file.item
+      td = item_file.storage
+      td = item_file.directory
+      td = item_file.flag
+      td = link_to 'Show', item_file
+      td = link_to 'Edit', edit_item_file_path(item_file)
+      td = link_to 'Destroy', item_file, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Item file', new_item_file_path

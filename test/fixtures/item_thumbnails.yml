@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  item_id: 
+  time_sec: 1
+  image_filename: MyString
+
+two:
+  item_id: 
+  time_sec: 1
+  image_filename: MyString

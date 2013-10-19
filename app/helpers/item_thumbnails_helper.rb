@@ -1,0 +1,2 @@
+module ItemThumbnailsHelper
+end

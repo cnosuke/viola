@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @storage.name
+p
+  strong Path:
+  = @storage.path
+p
+  strong Description:
+  = @storage.description
+p
+  strong Device:
+  = @storage.device
+
+= link_to 'Edit', edit_storage_path(@storage)
+'|
+= link_to 'Back', storages_path

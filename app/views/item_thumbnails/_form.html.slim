@@ -1,0 +1,18 @@
+= form_for @item_thumbnail do |f|
+  - if @item_thumbnail.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@item_thumbnail.errors.count, "error")} prohibited this item_thumbnail from being saved:"
+      ul
+        - @item_thumbnail.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :item
+    = f.text_field :item
+  .field
+    = f.label :time_sec
+    = f.number_field :time_sec
+  .field
+    = f.label :image_filename
+    = f.text_field :image_filename
+  .actions = f.submit 'Save'
