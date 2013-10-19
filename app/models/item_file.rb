@@ -4,7 +4,7 @@ class ItemFile < ActiveRecord::Base
 
   scope :where_by_filename_with_storage_and_directory, ->(stor, dir, filename){
     includes(:item)
-      .where(storage_id:stor.id, directory:dir)
+      .where(storage_id: stor.id, directory: dir)
       .where("items.filename = ?", filename)
   }
 

@@ -24,10 +24,10 @@ def index_directory(stor, dir)
 
 		if mached_files.length == 0 then
 			mached_items = Item.where(
-								filename:filename, 
-								file_size:filesize,
-								file_created_at:file_created, 
-								file_updated_at:file_updated)
+								filename: filename, 
+								file_size: filesize,
+								file_created_at: file_created, 
+								file_updated_at: file_updated )
 
 			if mached_items.length == 0 then
 				puts "new: " + filename
@@ -73,30 +73,30 @@ def index_directory(stor, dir)
 				end
 
 				new_item = Item.new(
-								filename:filename, 
-								file_size:filesize, 
-								file_created_at:file_created, 
-								file_updated_at:file_updated, 
-								file_hash:file_hash, 
-								format:file_format, 
-								title:title, 
-								subtitle:subtitle, 
-								number:number, 
-								released_at:released_at, 
-								duration_sec:duration_sec, 
-								description:description, 
-								log:log, 
-								flag:flag)
+								filename: filename, 
+								file_size: filesize, 
+								file_created_at: file_created, 
+								file_updated_at: file_updated, 
+								file_hash: file_hash, 
+								format: file_format, 
+								title: title, 
+								subtitle: subtitle, 
+								number: number, 
+								released_at: released_at, 
+								duration_sec: duration_sec, 
+								description: description, 
+								log: log, 
+								flag: flag )
 
 				unless new_item.save then
 					raise "Item save error: " + filename
 				end
 
 				new_file = ItemFile.new(
-								item_id:new_item.id, 
-								storage_id:stor.id, 
-								directory:dir, 
-								flag:0)
+								item_id: new_item.id, 
+								storage_id: stor.id, 
+								directory: dir, 
+								flag: 0 )
 
 				unless new_file.save then
 					raise "ItemFile save error: " + filename
@@ -105,7 +105,7 @@ def index_directory(stor, dir)
 
 				prop.each do |k, v|
 					pp = ItemProp.new(
-						item_id:new_item.id,
+						item_id: new_item.id,
 						name: k,
 						value: v)
 
@@ -120,10 +120,10 @@ def index_directory(stor, dir)
 				puts "clone: " + filename
 
 				new_file = ItemFile.new(
-								item_id:mached_items[0].id, 
-								storage_id:stor.id, 
-								directory:dir, 
-								flag:0)
+								item_id: mached_items[0].id, 
+								storage_id: stor.id, 
+								directory: dir, 
+								flag: 0 )
 
 
 				unless new_file.save then
