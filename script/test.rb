@@ -1,5 +1,6 @@
 require 'nkf'
 
+
 def index_directory(stor, dir)
 	puts "scanning: " + dir
 
@@ -33,6 +34,7 @@ def index_directory(stor, dir)
 		file_created = File.ctime(filepath)
 		file_updated = File.mtime(filepath)
 		file_format = File.extname(filepath).upcase
+		file_format = file_format.slice(1, file_format.length-1)
 		file_hash = ""
 
 		#mached_files = Item.where(filename:File.basename(filename)).first.item_file.where(storage_id:stor.id, directory:dir)
