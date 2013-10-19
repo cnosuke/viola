@@ -1,31 +1,12 @@
 require 'nkf'
 
-
 def index_directory(stor, dir)
 	puts "scanning: " + dir
 
 	searchExts = "ts,mp4,mkv,iso,mpg,wmv,avi,mpeg"
 	log_dir = "/mnt/record/Record/_log/"
 
-
-	# check indexed files is deleted or modified
-	ItemFile.where(storage_id:stor.id, directory:dir).each do |item_file|
-		filename = item_file.item.filename
-		filepath = stor.path + item_file.directory + "/" + filename
-
-		if File.exists?(filepath) then
-			if	File.size(filepath) != item_file.item.file_size || 
-				File.ctime(filepath).to_i != item_file.item.file_created_at.to_i ||
-				File.mtime(filepath).to_i != item_file.item.file_updated_at.to_i then
-				puts "modified : " + filename
-				item_file.destroy
-			end
-
-		else
-			puts "deleted: " + filename
-			item_file.destroy
-		end
-	end
+	ItemFile.check_deleted_or_modified(stor, dir)
 
 	# scan new files
 	Dir[stor.path + dir + "/*.{" + searchExts + "}"].each do |filepath|
@@ -38,10 +19,8 @@ def index_directory(stor, dir)
 		file_hash = ""
 
 		#mached_files = Item.where(filename:File.basename(filename)).first.item_file.where(storage_id:stor.id, directory:dir)
-		mached_files = ItemFile
-						.includes(:item)
-						.where(storage_id:stor.id, directory:dir)
-						.where("items.filename = ?", filename)
+		mached_files = ItemFile.where_by_filename_with_storage_and_directory(stor, dir, filename)
+
 
 		if mached_files.length == 0 then
 			mached_items = Item.where(
@@ -77,19 +56,15 @@ def index_directory(stor, dir)
 
 					# read tv-program file
 					desc_filename = log_dir + filename + ".program.txt"
-					if File.exists?(desc_filename) then
-						f = File.open(desc_filename, 'r:cp932:utf-8')
-						description = f.read
-						f.close
-					end
+					File.open(desc_filename, 'r:cp932:utf-8') do |io|
+						description = io.read
+					end if File.exists?(desc_filename)
 
 					# read tv-err file
 					log_filename = log_dir + filename + ".err"
-					if File.exists?(log_filename) then
-						f = File.open(log_filename, 'r:cp932:utf-8')
-						log = f.read
-						f.close
-					end
+					File.open(log_filename, 'r:cp932:utf-8') do |io|
+							log = io.read
+						end if File.exists?(log_filename) 
 
 					# ToDo: get duration_sec from ffmpeg
 
@@ -124,7 +99,7 @@ def index_directory(stor, dir)
 								flag:0)
 
 				unless new_file.save then
-					rase "ItemFile save error: " + filename
+					raise "ItemFile save error: " + filename
 				end
 
 
